@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <EditText
+        android:id="@+id/et_1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_username"
+        android:drawableLeft="@drawable/question"
+        android:drawablePadding="5dp"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="东哥帅不帅？"
+        android:textColor="#000"
+        android:textSize="32sp" />
+
+    <EditText
+        android:id="@+id/et_2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/et_1"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_username"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="5dp"
+        android:hint="给出答案"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#ffad33"
+        android:textSize="32sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/et_2"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_launch"
+        android:text="登     录"
+        android:textColor="#4422ff"
+        android:textSize="30sp"
+        android:id="@+id/bt_launch"/>
+
+    <Button
+        android:id="@+id/btn_to_imu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/bt_launch"
+        android:layout_marginTop="50dp"
+        android:text="IMU"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btn_to_camera"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn_to_imu"
+        android:layout_marginTop="20dp"
+        android:text="摄像头"
+        android:textSize="25sp"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/btn_to_gps"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn_to_camera"
+        android:layout_marginTop="20dp"
+        android:text="GPS"
+        android:textSize="25sp"
+        android:textColor="#000000"/>
+
+</RelativeLayout>
+
+
