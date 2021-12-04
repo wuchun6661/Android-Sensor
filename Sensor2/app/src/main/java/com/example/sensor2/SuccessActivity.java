@@ -37,8 +37,9 @@ public class SuccessActivity extends AppCompatActivity implements SensorEventLis
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SuccessActivity.this,MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(SuccessActivity.this,MainActivity.class);
+//                startActivity(intent);
+                finish();
             }
         });
 

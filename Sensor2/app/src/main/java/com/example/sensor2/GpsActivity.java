@@ -39,6 +39,14 @@ public class GpsActivity extends AppCompatActivity {
         et_gps_3 = findViewById(R.id.et_gps_3);
         btn_gps_main = findViewById(R.id.btn_gps_main);
 
+        btn_gps_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(GpsActivity.this,MainActivity.class);
+//                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -46,13 +54,7 @@ public class GpsActivity extends AppCompatActivity {
         super.onResume();
         GPSLocationManager gpsManager = GPSLocationManager.getInstances(GpsActivity.this);
         gpsManager.start(new MyListener(), true);
-        btn_gps_main.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GpsActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     @Override
