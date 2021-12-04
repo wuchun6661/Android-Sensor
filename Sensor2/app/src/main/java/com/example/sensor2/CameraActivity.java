@@ -273,7 +273,8 @@ public class CameraActivity extends AppCompatActivity {
             CameraCaptureSession.CaptureCallback CaptureCallback = new CameraCaptureSession.CaptureCallback() {
                 @Override
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
-                    Toast.makeText(getApplicationContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
+                    String path1 = Environment.getExternalStorageDirectory() + "/DCIM/CameraV2/";
+                    Toast.makeText(getApplicationContext(), "Image Saved in:" + path1, Toast.LENGTH_SHORT).show();
                     unLockFocus();
                 }
             };

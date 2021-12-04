@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sensor2">
         <activity
+            android:name=".ImuActivity"
+            android:exported="false" />
+        <activity
             android:name=".GpsActivity"
             android:exported="false" />
         <activity

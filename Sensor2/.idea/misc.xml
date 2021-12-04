@@ -15,6 +15,7 @@
         <entry key="..\:/Codes/Android/Sensor2/app/src/main/res/drawable/bg_username.xml" value="0.38229166666666664" />
         <entry key="..\:/Codes/Android/Sensor2/app/src/main/res/layout/activity_camera.xml" value="0.36614583333333334" />
         <entry key="..\:/Codes/Android/Sensor2/app/src/main/res/layout/activity_gps.xml" value="0.36614583333333334" />
+        <entry key="..\:/Codes/Android/Sensor2/app/src/main/res/layout/activity_imu.xml" value="0.33" />
       </map>
     </option>
   </component>

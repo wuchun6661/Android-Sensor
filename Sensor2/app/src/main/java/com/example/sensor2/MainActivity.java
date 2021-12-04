@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 /******************************************************************/
                 case R.id.btn_to_imu:
-                    intent = new Intent(MainActivity.this,SuccessActivity.class);
+                    intent = new Intent(MainActivity.this,ImuActivity.class);
                     startActivity(intent);
                     break;
                 /******************************************************************/
