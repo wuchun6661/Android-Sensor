@@ -127,10 +127,26 @@
     </TableRow>
 
     <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="开启传感器"
+        android:textSize="25dp" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:id="@+id/btn_stop"
+        android:text="关闭并保存"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
         android:layout_height="50dp"
         android:layout_width="match_parent"
         android:id="@+id/btn_1"
         android:text="返回登录界面"
         android:textSize="25dp"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="10dp"/>
 </TableLayout>

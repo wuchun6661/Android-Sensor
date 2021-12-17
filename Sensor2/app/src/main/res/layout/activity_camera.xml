@@ -12,12 +12,12 @@
         android:layout_centerInParent="true" />
 
     <Button
+        android:id="@+id/photoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="拍照"
-        android:id="@+id/photoButton"
-        android:onClick="takePicture"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="takePicture"
+        android:text="拍照" />
 
 </RelativeLayout>

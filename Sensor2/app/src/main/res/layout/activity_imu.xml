@@ -1,49 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:stretchColumns="0,3"
+    tools:context=".MainActivity" >
 
+    <!--三行，传感器数据显示-->
+    <TableRow android:paddingTop="10dp"
+        android:background="#00ff33">
+        <!--文本框组件-->
+        <TextView />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x轴加速度:"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"/>
+        <!--编辑框组件-->
+        <EditText
+            android:id="@+id/et1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:hint="000"/>
+        <TextView />
+    </TableRow>
 
-    <TextView
-        android:id="@+id/tvx"
-        android:layout_width="214dp"
-        android:layout_height="53dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="100dp" />
+    <TableRow
+        android:background="#00ff33">
+        <TextView />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="y轴加速度:"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/tvy"
-        android:layout_width="214dp"
-        android:layout_height="53dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="158dp" />
+        <EditText
+            android:id="@+id/et2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:hint="000"/>
+        <TextView />
+    </TableRow>
 
-    <TextView
-        android:id="@+id/tvz"
-        android:layout_width="214dp"
-        android:layout_height="53dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="234dp" />
+    <TableRow android:background="#00ff33">
+        <TextView />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="z轴加速度:"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/et3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:hint="000"/>
+        <TextView />
+    </TableRow>
+
+    <TableRow android:paddingTop="10dp"
+        android:background="#55aaff"
+        android:layout_marginTop="50dp">
+        <!--文本框组件-->
+        <TextView />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x轴角速度:"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"/>
+        <!--编辑框组件-->
+        <EditText
+            android:id="@+id/et4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:hint="000"/>
+        <TextView />
+    </TableRow>
+
+    <TableRow
+        android:background="#55aaff">
+        <TextView />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="y轴角速度:"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/et5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:hint="000"/>
+        <TextView />
+    </TableRow>
+
+    <TableRow android:background="#55aaff">
+        <TextView />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="z轴角速度:"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/et6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:hint="000"/>
+        <TextView />
+    </TableRow>
 
     <Button
-        android:id="@+id/bt_dsp"
-        android:layout_width="131dp"
-        android:layout_height="79dp"
-        android:text="开始显示加速度"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="444dp" />
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="开启传感器"
+        android:textSize="25dp" />
 
     <Button
-        android:id="@+id/bt_stop"
-        android:layout_width="133dp"
-        android:layout_height="81dp"
-        android:text="停止显示加速度" />
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:id="@+id/btn_stop"
+        android:text="关闭并保存"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"/>
 
-</LinearLayout>
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:id="@+id/btn_imu_main"
+        android:text="返回登录界面"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"/>
+</TableLayout>

@@ -1,6 +1,7 @@
 package com.example.sensor2;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Environment;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -10,6 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -21,36 +23,42 @@ import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import  java.util.List;
 
 public class ImuActivity extends AppCompatActivity implements SensorEventListener,View.OnClickListener {
 
     private SensorManager mSensorMgr;
-    private  TextView tvx;
-    private  TextView tvy;
-    private  TextView tvz;
-    private  List<String> LS;
+    private EditText tvx,tvy,tvz;
+    private EditText gyx,gyy,gyz;
+    private  List<String> LS1;
+    private List<String> LS2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imu);
 
-        LS=new ArrayList<String>();
+        LS1=new ArrayList<String>();
+        LS2=new ArrayList<String>();
 
-        Button bt=findViewById(R.id.bt_dsp);
+        Button bt=findViewById(R.id.btn_start);
         bt.setOnClickListener(this);
 
-        Button bt_stop=findViewById(R.id.bt_stop);
+        Button bt_stop=findViewById(R.id.btn_stop);
         bt_stop.setOnClickListener(this);
 
-        tvx=findViewById(R.id.tvx);
-        tvy=findViewById(R.id.tvy);
-        tvz=findViewById(R.id.tvz);
+        Button btn_imu_main=findViewById(R.id.btn_imu_main);
+        btn_imu_main.setOnClickListener(this);
+
+        tvx=findViewById(R.id.et1);
+        tvy=findViewById(R.id.et2);
+        tvz=findViewById(R.id.et3);
+
+        gyx=findViewById(R.id.et4);
+        gyy=findViewById(R.id.et5);
+        gyz=findViewById(R.id.et6);
         //
         mSensorMgr=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
     }
@@ -62,6 +70,7 @@ public class ImuActivity extends AppCompatActivity implements SensorEventListene
     }
 
     protected void onResume()
+
     {
         super.onResume();
     }
@@ -77,17 +86,32 @@ public class ImuActivity extends AppCompatActivity implements SensorEventListene
         {
             float[] values=event.values;
 
-            tvx.setText("ACC_X: "+Float.toString(values[0]));
-            tvy.setText("ACC_Y: "+Float.toString(values[1]));
-            tvz.setText("ACC_Z: "+Float.toString(values[2]));
+            tvx.setText(String.format("%.6f", values[0]));
+            tvy.setText(String.format("%.6f", values[1]));
+            tvz.setText(String.format("%.6f", values[2]));
 
             Date date=new Date();
-            SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat formatter=new SimpleDateFormat("sss:SSS");
             String time=formatter.format(date);
             String s="";
-            s=time+" "+Float.toString(values[0])+" "+Float.toString(values[1])+" "+Float.toString(values[2])+"\n";
-            LS.add(s);
+            s=time+"    "+String.format("%.6f", values[0])+"    "+String.format("%.6f", values[1])+"    "+String.format("%.6f", values[2])+"\n";
+            LS1.add(s);
+        }
 
+        if(event.sensor.getType()==Sensor.TYPE_GYROSCOPE)
+        {
+            float[] values=event.values;
+
+            gyx.setText(String.format("%.6f", values[0]));
+            gyy.setText(String.format("%.6f", values[1]));
+            gyz.setText(String.format("%.6f", values[2]));
+
+            Date date=new Date();
+            SimpleDateFormat formatter=new SimpleDateFormat("sss:SSS");
+            String time=formatter.format(date);
+            String s="";
+            s=time+"    "+String.format("%.6f", values[0])+"    "+String.format("%.6f", values[1])+"    "+String.format("%.6f", values[2])+"\n";
+            LS2.add(s);
         }
     }
 
@@ -102,18 +126,20 @@ public class ImuActivity extends AppCompatActivity implements SensorEventListene
 
     private static final String TAG = "ACCCollection:";
 
-    public static void writeLS(List<String> LS) {
+    public  void writeLS(List<String> LS,String sensor_name) {
+        Date date_now=new Date();
+        SimpleDateFormat formatter_now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time_now = formatter_now.format(date_now);
+        String filename_now = sensor_name + " " + time_now + ".csv";
         try {
-            String path=Environment.getExternalStorageDirectory()+"/DCIM/CameraV2/";
-            File folde=new File(path);
-            //tvx.setText(path);
+            File dir = new File(getExternalFilesDir(null),"传感器数据");
             Log.i(TAG, "write: -------1");
-            if (!folde.exists() || !folde.isDirectory())
+            if (!dir.exists() || !dir.isDirectory())
             {
                 Log.i(TAG, "write: --------2");
-                folde.mkdirs();
+                dir.mkdirs();
             }
-            File file=new File(path,"aa.csv");
+            File file=new File(dir,filename_now);
             if(!file.exists())
             {
                 file.createNewFile();
@@ -128,6 +154,7 @@ public class ImuActivity extends AppCompatActivity implements SensorEventListene
             }
 
             bw.close();
+            Toast.makeText(ImuActivity.this,"保存成功: " + file.getAbsolutePath().toString(), Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
@@ -137,25 +164,31 @@ public class ImuActivity extends AppCompatActivity implements SensorEventListene
 
 
 
+
     public void onClick(View v)
     {
-        if(v.getId()==R.id.bt_dsp)
+        if(v.getId()==R.id.btn_start)
         {
             mSensorMgr.unregisterListener(this,mSensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
-            mSensorMgr.registerListener(this,
-                    mSensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                    SensorManager.SENSOR_DELAY_NORMAL);
-            LS.clear();
+            mSensorMgr.unregisterListener(this,mSensorMgr.getDefaultSensor(Sensor.TYPE_GYROSCOPE));//关掉后重启管理器
+
+            mSensorMgr.registerListener(this, mSensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
+            mSensorMgr.registerListener(this, mSensorMgr.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
+            LS1.clear();
+            LS2.clear();
             return;
         }
-        if(v.getId()==R.id.bt_stop)
+        if(v.getId()==R.id.btn_stop)
         {
             mSensorMgr.unregisterListener(this);
-
-            writeLS(LS);
-            String path1=Environment.getExternalStorageDirectory()+"/DCIM/CameraV2/";
-            Toast.makeText(ImuActivity.this, "Image Saved in:" + path1, Toast.LENGTH_SHORT).show();
+            writeLS(LS1,"Acc");
+            writeLS(LS2,"Gyr");
             return;
+        }
+        if(v.getId()==R.id.btn_imu_main)
+        {
+            mSensorMgr.unregisterListener(this);
+            finish();
         }
     }
 }
